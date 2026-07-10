@@ -2,11 +2,17 @@
 from datetime import datetime, timedelta
 from meteostat import daily
 import pandas as pd
+from pathlib import Path
 
 
 def generate_hdd():
 
-    station_data = pd.read_csv("weather_stations.csv")
+    BASE_DIR = Path(__file__).parent
+
+    station_file = BASE_DIR / "weather_stations.csv"
+
+    station_data = pd.read_csv(station_file)
+
 
     end = datetime.now()
     start = end - timedelta(days=60)
